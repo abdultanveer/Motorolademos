@@ -15,11 +15,21 @@
         android:theme="@style/Theme.Motorolademos"
         tools:targetApi="31">
         <activity
-            android:name=".CalendarActivity"
-            android:exported="true" >
+            android:name=".ActivityMessenger"
+            android:exported="true">
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <action android:name="ineed.calendar.motorola"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CalendarActivity"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="ineed.calendar.motorola" />
             </intent-filter>
         </activity>
 
@@ -28,8 +38,17 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <action android:name="ineed.addition.moto"/>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="ineed.addition.moto" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".MessengerService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="moto.messenger.service" />
             </intent-filter>
         </service>
 
@@ -47,11 +66,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
