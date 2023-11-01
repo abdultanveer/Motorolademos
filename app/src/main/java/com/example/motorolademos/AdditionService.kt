@@ -9,7 +9,12 @@ var TAG = "AdditionService"
 class AdditionService : Service() {
     private val binderPipe = LocalBinder()
 
-    inner class LocalBinder : Binder() {
+    private val aidlBinder = object : IAddInterface.Stub() {
+        override fun add(fno: Int, sno: Int): Int {
+            return fno + sno;
+        }
+    }
+        inner class LocalBinder : Binder() {
         fun getAddService():AdditionService{
             return this@AdditionService
         }
@@ -38,7 +43,7 @@ class AdditionService : Service() {
 
     }
     override fun onBind(intent: Intent): IBinder {
-        return binderPipe
+        return aidlBinder
     }
 
 
