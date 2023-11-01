@@ -26,7 +26,12 @@
         <service
             android:name=".AdditionService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="ineed.addition.moto"/>
+            </intent-filter>
+        </service>
 
         <receiver
             android:name=".SmsReceiver"
