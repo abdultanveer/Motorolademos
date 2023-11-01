@@ -14,10 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Motorolademos"
         tools:targetApi="31">
+        <activity
+            android:name=".CalendarActivity"
+            android:exported="true" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="ineed.calendar.motorola"/>
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".AdditionService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <receiver
             android:name=".SmsReceiver"
