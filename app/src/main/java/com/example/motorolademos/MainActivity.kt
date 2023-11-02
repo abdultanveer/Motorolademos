@@ -8,7 +8,9 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
+import androidx.core.content.FileProvider
 import com.example.motorolademos.databinding.ActivityMainBinding
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +35,17 @@ class MainActivity : AppCompatActivity() {
         binding.btnLoad.setOnClickListener { loadDataContentprovider() }
 
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val file = File(cacheDir.absolutePath, "test_file.txt")
+        if (file.parentFile?.exists() == false)
+            file.parentFile?.mkdirs()
+
+        val uri = FileProvider.getUriForFile(this, FILE_AUTHORITY, file)
+
+        binding.tvFileUri.text =uri.toString()
     }
 
     private fun loadDataContentprovider() {
@@ -85,5 +98,10 @@ class MainActivity : AppCompatActivity() {
             TODO("Not yet implemented")
         }
 
+    }
+
+    companion object {
+        // same as the one defined in android:authorities in AndroidManifest.xml
+        const val FILE_AUTHORITY = "com.moto.filez"
     }
 }
