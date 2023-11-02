@@ -30,7 +30,18 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnUnbind.setOnClickListener { unbindAddService() }
 
+        binding.btnLoad.setOnClickListener { loadDataContentprovider() }
 
+
+    }
+
+    private fun loadDataContentprovider() {
+        val usersUri = Uri.parse("content://com.moto.usersdb")
+        var cursor = contentResolver.query(usersUri,null,null,null,null,)
+        cursor?.moveToFirst()
+        var nameIndex = cursor?.getColumnIndex("name")
+       var name =  cursor?.getString(nameIndex!!)
+        binding.tvResult.text = name
     }
 
     private fun insertContentProvider() {
