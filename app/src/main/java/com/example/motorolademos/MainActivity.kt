@@ -1,8 +1,10 @@
 package com.example.motorolademos
 
 import android.content.ComponentName
+import android.content.ContentValues
 import android.content.Intent
 import android.content.ServiceConnection
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnStart.setOnClickListener {
             startAdditionService()
         }
+        binding.btnInsert.setOnClickListener { insertContentProvider() }
 
         binding.btnStop.setOnClickListener { stopAddService() }
 
@@ -27,6 +30,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnUnbind.setOnClickListener { unbindAddService() }
 
+
+    }
+
+    private fun insertContentProvider() {
+        val usersUri = Uri.parse("content://com.moto.usersdb")
+        val values = ContentValues()
+        values.put("name",binding.etName.text.toString())
+        contentResolver.insert(usersUri,values)
 
     }
 
