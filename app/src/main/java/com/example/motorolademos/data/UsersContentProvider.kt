@@ -35,6 +35,7 @@ class UsersContentProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         var dbHelper = DatabaseHelper(context!!)
+        db = dbHelper.writableDatabase
         return true
     }
 
@@ -53,7 +54,7 @@ class UsersContentProvider : ContentProvider() {
         TODO("Implement this to handle requests to update one or more rows.")
     }
 
-    private val db: SQLiteDatabase? = null
+    private var db: SQLiteDatabase? = null
 companion object {
     // declaring name of the database
     val DATABASE_NAME = "UserDB"
